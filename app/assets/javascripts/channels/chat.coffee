@@ -3,7 +3,7 @@ jQuery(document).on 'turbolinks:load', ->
   if $('#messages').length > 0
 
     App.global_chat = App.cable.subscriptions.create {
-        channel: "ChatRoomsChannel"
+        channel: "ChatChannel"
         chat_room_id: messages.data('chat-room-id')
       },
       connected: ->
@@ -22,7 +22,7 @@ jQuery(document).on 'turbolinks:load', ->
       $this = $(this)
       textarea = $this.find('#message_body')
       if $.trim(textarea.val()).length > 1
-        App.global_chat.send_message textarea.val(), messages.data('chat-room-id')
+        App.global_chat.send_message textarea.val(), messages.data('chat-id')
         textarea.val('')
       e.preventDefault()
       return false
