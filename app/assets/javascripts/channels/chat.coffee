@@ -1,5 +1,5 @@
 App.global_chat = App.cable.subscriptions.create {
-    channel: "ChatRoomsChannel"
+    channel: "ChatChannel"
     chat_room_id: ''
   },
   connected: ->
