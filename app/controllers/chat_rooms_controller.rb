@@ -20,7 +20,9 @@ class ChatRoomsController < ApplicationController
 
   def show
     @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
-    @chat_room.count_messages = ChatRoom.includes(:messages).find_by(id: params[:id]).count
+    p "###################### #{@chat_room.messages.count}"
+    UnreadMessage.find_by(user_id: current_user.id, chat_room_id: @chat_room.id).update_attributes(read_messages: @chat_room.messages.count)
+    p "###################### #{UnreadMessage.find_by(user_id: current_user.id, chat_room_id: @chat_room.id).read_messages}"
     @chat_rooms_names = ChatRoom.all
     @message = Message.new
   end

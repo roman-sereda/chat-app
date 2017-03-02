@@ -6,8 +6,6 @@ class ChatRoomsChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    UnreadMessage.find(user_id: current_user.id,
-                       chat_room_id: params[:id]).read_messages = ChatRoom.find(params[:id]).count_messages
   end
 
   def send_message(data)

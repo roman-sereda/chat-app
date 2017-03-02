@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :unread_messages
 
   def name
     email.split('@')[0]
