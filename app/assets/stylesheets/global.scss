@@ -9,6 +9,16 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
+.chat_menu{
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 100px;
+  border: 1px solid black;
+}
+
+
 #messages {
   max-height: 450px;
   overflow-y: auto;

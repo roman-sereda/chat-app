@@ -1,5 +1,7 @@
 <h1><%= @chat_room.title %></h1>
 
+<%= render 'chat_rooms_list' %>
+
 <div id="messages" data-chat-room-id="<%= @chat_room.id %>">
   <%= render @chat_room.messages %>
 </div>

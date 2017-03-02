@@ -4,6 +4,8 @@
   <p class="lead"><%= link_to 'New chat room', new_chat_room_path, class: 'btn btn-primary' %></p>
 
   <ul>
-    <%= render @chat_rooms %>
+    <% @chat_rooms_names.each do |chat| %>
+      <li><%= link_to link_to chat.title, chat %></li>
+    <% end %>
   </ul>
 </div>
