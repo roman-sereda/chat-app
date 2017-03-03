@@ -19,12 +19,9 @@ class ChatRoomsController < ApplicationController
   end
 
   def show
-    @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
-    p "###################### #{@chat_room.messages.count}"
-    UnreadMessage.find_by(user_id: current_user.id, chat_room_id: @chat_room.id).update_attributes(read_messages: @chat_room.messages.count)
-    p "###################### #{UnreadMessage.find_by(user_id: current_user.id, chat_room_id: @chat_room.id).read_messages}"
-    @chat_rooms_names = ChatRoom.all
+    @chat_room = current_chat
     @message = Message.new
+    @chat_list = ChatRoom.all.map {|chat| {id: chat.id, title: chat.title, unread_mess: unread(chat.id)}}
   end
 
   private
@@ -32,4 +29,13 @@ class ChatRoomsController < ApplicationController
   def chat_room_params
     params.require(:chat_room).permit(:title)
   end
+
+  def current_chat
+    ChatRoom.find_by(id: params[:id])
+  end
+
+  def unread(chat_id)
+    UnreadMessage.find_by(user_id: current_user, chat_room_id: chat_id).read_messages
+  end
+
 end

@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20170302131849) do
   create_table "chat_rooms", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.integer  "messages_count"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "messages_count", default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_chat_rooms_on_user_id"
   end
 
