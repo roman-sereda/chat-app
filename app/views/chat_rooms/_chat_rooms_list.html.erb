@@ -3,9 +3,11 @@
 
   <p class="lead"><%= link_to 'New chat room', new_chat_room_path, class: 'btn btn-primary' %></p>
 
-  <ul>
-    <% @chat_list.each do |chat| %>
-      <li><%= link_to chat[:title], "/chat_rooms/#{chat[:id]}"  %><%= chat[:unread_mess] %></li>
-    <% end %>
-  </ul>
+  <div id="chats">
+    <ul>
+      <% @chat_list.each do |chat| %>
+        <li id = "<%= chat[:id] %>"><%= link_to chat[:title], "/chat_rooms/#{chat[:id]}"  %><span class="ur_mess"><%= chat[:unread_mess] %></span></li>
+      <% end %>
+    </ul>
+  </div>
 </div>

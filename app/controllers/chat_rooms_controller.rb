@@ -53,9 +53,7 @@ class ChatRoomsController < ApplicationController
   def first_entrance
     begin
       UnreadMessage.find(user_id: current_user.id, chat_room_id: @chat_room.id)
-      p = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Not First Entrance"
     rescue
-      p = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! First Entrance"
       UnreadMessage.create(user_id: current_user.id, chat_room_id: @chat_room.id, read_messages: 0)
     end
   end
